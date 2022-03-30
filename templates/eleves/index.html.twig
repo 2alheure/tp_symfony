@@ -7,6 +7,7 @@
             <th>Nom</th>
             <th>Date de naissance</th>
             <th>Classe</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -15,12 +16,17 @@
             <td>{{ eleve.nomEtPrenom }}</td>
             <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
             <td>{{ eleve.classe.nom }}</td>
+            <td>
+                <a href="{{path('eleves_delete', {eleve: eleve.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </td>
         </tr>
         {% endfor %}
 
 
         <tr>
-            <td colspan="3" class="bg-success text-center">
+            <td colspan="4" class="bg-success text-center">
                 <a href="{{path('eleves_create')}}" class="text-light">
                     <i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel élève
                 </a>

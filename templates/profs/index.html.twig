@@ -7,6 +7,7 @@
             <th>Nom</th>
             <th>Date de naissance</th>
             <th>Matière</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -15,11 +16,16 @@
             <td>{{ prof.nomEtPrenom }}</td>
             <td>{{ prof.dateNaissance|date('d/m/Y') }}</td>
             <td>{{ prof.matiere.nom }}</td>
+            <td>
+                <a href="{{path('profs_delete', {id: prof.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ?')">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </td>
         </tr>
         {% endfor %}
 
         <tr>
-            <td colspan="3" class="bg-success text-center">
+            <td colspan="4" class="bg-success text-center">
                 <a href="{{path('profs_create')}}" class="text-light">
                     <i class="fa fa-plus" aria-hidden="true"></i> Créer un nouveau professeur
                 </a>
