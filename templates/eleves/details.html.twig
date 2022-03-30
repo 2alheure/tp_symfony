@@ -40,6 +40,14 @@
             <td>{{ note.date|date('d/m/Y') }}</td>
         </tr>
         {% endfor %}
+
+        <tr>
+            <td colspan="4" class="bg-success text-center">
+                <a href="{{path('notes_create', {eleve: eleve.id})}}" class="text-light">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une note
+                </a>
+            </td>
+        </tr>
     </tbody>
 </table>
 

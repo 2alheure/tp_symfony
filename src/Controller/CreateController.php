@@ -2,18 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Note;
 use App\Entity\Prof;
 use App\Entity\Eleve;
 use App\Entity\Classe;
-use App\Entity\Matiere;
+use App\Form\NoteType;
 use App\Form\ProfType;
+use App\Entity\Matiere;
 use App\Form\EleveType;
 use App\Form\ClasseType;
 use App\Form\MatiereType;
+use App\Repository\NoteRepository;
 use App\Repository\ProfRepository;
 use App\Repository\EleveRepository;
 use App\Repository\ClasseRepository;
 use App\Repository\MatiereRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,7 +41,7 @@ class CreateController extends AbstractController {
             'form' => $formulaire->createView()
         ]);
     }
-    
+
     #[Route('/classes/create', name: 'classes_create')]
     public function classes(Request $request, ClasseRepository $cr): Response {
 
@@ -70,6 +74,29 @@ class CreateController extends AbstractController {
 
         return $this->render('generic/form.html.twig', [
             'titre' => 'Nouvelle matière',
+            'form' => $formulaire->createView()
+        ]);
+    }
+
+    #[Route('/eleves/{eleve}/notes/create', name: 'notes_create')]
+    public function notes(Eleve $eleve, Request $request, NoteRepository $er): Response {
+
+        $note = new Note;
+        $note->setEleve($eleve);
+        $note->setDate(new DateTime);
+        
+        $formulaire = $this->createForm(NoteType::class, $note);
+        $formulaire->handleRequest($request);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid()) {
+            $er->add($note);
+            return $this->redirectToRoute('eleves_details', [
+                'eleve' => $eleve->getId(),
+            ]);
+        }
+
+        return $this->render('generic/form.html.twig', [
+            'titre' => 'Nouvelle note',
             'form' => $formulaire->createView()
         ]);
     }
