@@ -99,6 +99,18 @@ class Eleve {
         return $this;
     }
 
+    public function getMoyenneGenerale() {
+        $sumNotes = 0;
+        $sumCoefs = 0;
+
+        foreach ($this->notes as $note) {
+            $sumCoefs += $note->getCoefficient();
+            $sumNotes += $note->getNote() * $note->getCoefficient();
+        }
+
+        return number_format($sumNotes / $sumCoefs, 2);
+    }
+
     public function getClasse(): ?Classe {
         return $this->classe;
     }
