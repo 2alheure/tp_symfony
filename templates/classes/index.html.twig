@@ -6,6 +6,7 @@
         <tr>
             <th>Nom</th>
             <th>Niveau</th>
+            <th>Nb. d'élèves</th>
             <th>Prof. principal</th>
         </tr>
     </thead>
@@ -14,13 +15,14 @@
         <tr>
             <td>{{ classe.nom }}</td>
             <td>{{ classe.niveau }}</td>
+            <td>{{ classe.eleves.count }}</td>
             <td>{{ classe.profPrincipal.nomEtPrenom }}</td>
         </tr>
         {% endfor %}
 
 
         <tr>
-            <td colspan="3" class="bg-success text-center">
+            <td colspan="4" class="bg-success text-center">
                 <a href="{{path('classes_create')}}" class="text-light">
                     <i class="fa fa-plus" aria-hidden="true"></i> Créer une nouvelle classe
                 </a>
