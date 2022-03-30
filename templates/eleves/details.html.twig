@@ -1,0 +1,42 @@
+{% include 'parties/header.html.twig' %}
+
+<h1>{{eleve.nomEtPrenom }}</h1>
+
+<h2>Informations</h2>
+<dl>
+    <dt>Date de naissance</dt>
+    <dd>{{eleve.dateNaissance|date('d/m/Y') }}</dd>
+
+    <dt>Niveau</dt>
+    <dd>{{eleve.classe.niveau}}</dd>
+
+    <dt>Classe</dt>
+    <dd>{{eleve.classe.nom}}</dd>
+
+    <dt>Prof. principal</dt>
+    <dd>{{eleve.classe.profPrincipal.nomEtPrenom}}</dd>
+</dl>
+
+<h2>Ses notes</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Matière</th>
+            <th>Coefficient</th>
+            <th>Note (/20)</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in eleve.notes %}
+        <tr>
+            <td>{{ note.matiere.nom }}</td>
+            <td>{{ note.coefficient }}</td>
+            <td>{{ note.note }}</td>
+            <td>{{ note.date|date('d/m/Y') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'parties/footer.html.twig' %}
