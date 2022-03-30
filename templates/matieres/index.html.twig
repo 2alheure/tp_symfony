@@ -1,0 +1,28 @@
+{% include 'parties/header.html.twig' %}
+<h1>Les matières</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Nb. de professeurs</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for matiere in matieres %}
+        <tr>
+            <td>{{ matiere.nom }}</td>
+            <td>{{ matiere.profs.count }}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <td colspan="2" class="bg-success text-center">
+                <a href="{{path('matieres_create')}}" class="text-light">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Créer une nouvelle matière
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% include 'parties/footer.html.twig' %}

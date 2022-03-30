@@ -1,0 +1,10 @@
+{% include 'parties/header.html.twig' %}
+
+<h1>{{titre}}</h1>
+
+{# form(form) = form_start(form) + form_widget(form) + form_end(form) #}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<input type="submit" class="btn btn-primary" value="Envoyer">
+{{ form_end(form) }}
+{% include 'parties/footer.html.twig' %}

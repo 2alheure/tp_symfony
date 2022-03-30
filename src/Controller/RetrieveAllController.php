@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\ProfRepository;
 use App\Repository\EleveRepository;
 use App\Repository\ClasseRepository;
+use App\Repository\MatiereRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,6 +29,13 @@ class RetrieveAllController extends AbstractController {
     public function eleves(EleveRepository $er): Response {
         return $this->render('eleves/index.html.twig', [
             'eleves' => $er->findAll(),
+        ]);
+    }
+
+    #[Route('/matieres/all', name: 'matieres_all')]
+    public function matieres(MatiereRepository $er): Response {
+        return $this->render('matieres/index.html.twig', [
+            'matieres' => $er->findAll(),
         ]);
     }
 }

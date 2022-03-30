@@ -17,6 +17,14 @@
             <td>{{ prof.matiere.nom }}</td>
         </tr>
         {% endfor %}
+
+        <tr>
+            <td colspan="3" class="bg-success text-center">
+                <a href="{{path('profs_create')}}" class="text-light">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Créer un nouveau professeur
+                </a>
+            </td>
+        </tr>
     </tbody>
 </table>
 {% include 'parties/footer.html.twig' %}

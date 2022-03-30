@@ -17,6 +17,15 @@
             <td>{{ eleve.classe.nom }}</td>
         </tr>
         {% endfor %}
+
+
+        <tr>
+            <td colspan="3" class="bg-success text-center">
+                <a href="{{path('eleves_create')}}" class="text-light">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Créer un nouvel élève
+                </a>
+            </td>
+        </tr>
     </tbody>
 </table>
 {% include 'parties/footer.html.twig' %}
