@@ -1,0 +1,10 @@
+<p>Bonjour,
+    <br><br> Vous avez reçu une demande de contact de la part de l'adresse <a href="mailto:{{fromEmail}}">{{fromEmail}}</a>.</p>
+
+<p>Voici le contenu du message :</p>
+
+<p style="background-color: #ddd; width:75%; margin: auto; padding: 12px;">{{ message|striptags('<br>')|raw }}</p>
+
+<p>Pour répondre à cet email, cliquez sur le bouton "Répondre", ou bien écrivez un email à <a href="mailto:{{fromEmail}}">{{fromEmail}}</a>.</p>
+
+<p>Bien cordialement, <br> Pronote. </p>
