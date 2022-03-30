@@ -1,0 +1,22 @@
+{% include 'parties/header.html.twig' %}
+<h1>Les élèves</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Classe</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for eleve in eleves %}
+        <tr>
+            <td>{{ eleve.nomEtPrenom }}</td>
+            <td>{{ eleve.dateNaissance|date('d/m/Y') }}</td>
+            <td>{{ eleve.classe.nom }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include 'parties/footer.html.twig' %}

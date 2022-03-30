@@ -1,0 +1,22 @@
+{% include 'parties/header.html.twig' %}
+<h1>Les professeurs</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Matière</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prof in profs %}
+        <tr>
+            <td>{{ prof.nomEtPrenom }}</td>
+            <td>{{ prof.dateNaissance|date('d/m/Y') }}</td>
+            <td>{{ prof.matiere.nom }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include 'parties/footer.html.twig' %}

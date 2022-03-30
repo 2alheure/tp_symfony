@@ -30,8 +30,7 @@ class Prof {
     #[ORM\OneToMany(mappedBy: 'profPrincipal', targetEntity: Classe::class)]
     private $classesPrincipales;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->classesPrincipales = new ArrayCollection();
     }
 
@@ -59,6 +58,10 @@ class Prof {
         return $this;
     }
 
+    public function getNomEtPrenom() {
+        return ucfirst($this->prenom) . ' ' . mb_strtoupper($this->nom);
+    }
+
     public function getDateNaissance(): ?\DateTimeInterface {
         return $this->dateNaissance;
     }
@@ -69,13 +72,11 @@ class Prof {
         return $this;
     }
 
-    public function getMatiere(): ?Matiere
-    {
+    public function getMatiere(): ?Matiere {
         return $this->matiere;
     }
 
-    public function setMatiere(?Matiere $matiere): self
-    {
+    public function setMatiere(?Matiere $matiere): self {
         $this->matiere = $matiere;
 
         return $this;
@@ -84,13 +85,11 @@ class Prof {
     /**
      * @return Collection<int, Classe>
      */
-    public function getClassesPrincipales(): Collection
-    {
+    public function getClassesPrincipales(): Collection {
         return $this->classesPrincipales;
     }
 
-    public function addClassesPrincipale(Classe $classesPrincipale): self
-    {
+    public function addClassesPrincipale(Classe $classesPrincipale): self {
         if (!$this->classesPrincipales->contains($classesPrincipale)) {
             $this->classesPrincipales[] = $classesPrincipale;
             $classesPrincipale->setProfPrincipal($this);
@@ -99,8 +98,7 @@ class Prof {
         return $this;
     }
 
-    public function removeClassesPrincipale(Classe $classesPrincipale): self
-    {
+    public function removeClassesPrincipale(Classe $classesPrincipale): self {
         if ($this->classesPrincipales->removeElement($classesPrincipale)) {
             // set the owning side to null (unless already changed)
             if ($classesPrincipale->getProfPrincipal() === $this) {

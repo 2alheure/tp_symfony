@@ -8,8 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
-class Eleve
-{
+class Eleve {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -31,47 +30,43 @@ class Eleve
     #[ORM\JoinColumn(nullable: false)]
     private $classe;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->notes = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
+    public function getNom(): ?string {
         return $this->nom;
     }
 
-    public function setNom(string $nom): self
-    {
+    public function setNom(string $nom): self {
         $this->nom = $nom;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
-    {
+    public function getPrenom(): ?string {
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
-    {
+    public function setPrenom(string $prenom): self {
         $this->prenom = $prenom;
 
         return $this;
     }
 
-    public function getDateNaissance(): ?\DateTimeInterface
-    {
+    public function getNomEtPrenom() {
+        return ucfirst($this->prenom) . ' ' . mb_strtoupper($this->nom);
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface {
         return $this->dateNaissance;
     }
 
-    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
-    {
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self {
         $this->dateNaissance = $dateNaissance;
 
         return $this;
@@ -80,13 +75,11 @@ class Eleve
     /**
      * @return Collection<int, Note>
      */
-    public function getNotes(): Collection
-    {
+    public function getNotes(): Collection {
         return $this->notes;
     }
 
-    public function addNote(Note $note): self
-    {
+    public function addNote(Note $note): self {
         if (!$this->notes->contains($note)) {
             $this->notes[] = $note;
             $note->setEleve($this);
@@ -95,8 +88,7 @@ class Eleve
         return $this;
     }
 
-    public function removeNote(Note $note): self
-    {
+    public function removeNote(Note $note): self {
         if ($this->notes->removeElement($note)) {
             // set the owning side to null (unless already changed)
             if ($note->getEleve() === $this) {
@@ -107,13 +99,11 @@ class Eleve
         return $this;
     }
 
-    public function getClasse(): ?Classe
-    {
+    public function getClasse(): ?Classe {
         return $this->classe;
     }
 
-    public function setClasse(?Classe $classe): self
-    {
+    public function setClasse(?Classe $classe): self {
         $this->classe = $classe;
 
         return $this;
